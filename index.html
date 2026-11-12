@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!--
+    ⚠️ FRONTEND DEMO · 前端演示版
+    本文件属于 AeroLens 演示程序，仅用于展示界面与交互；
+    登录/注册为演示流程（localStorage），照片为演示数据。
+    完整说明见仓库 README.md
+  -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AeroLens · 云端相册 — AI 无人机三维地球（演示版）</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=20261101" />
+  <link rel="stylesheet" href="css/page-transition.css?v=20261010" />
+  <!-- 过渡脚本必须在 head 同步执行：新页面首次绘制前铺上覆盖层，杜绝闪现 -->
+  <script src="js/page-transition.js?v=20261010"></script>
+  <script src="vendor/tailwind.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'app-cyan': '#38bdf8',
+            'app-emerald': '#34d399',
+            'app-gold': '#fbbf24',
+            'neutral': {
+              200: '#cbd5e1',
+              300: '#94a3b8',
+              400: '#94a3b8',
+              500: '#64748b',
+              600: '#475569',
+              700: '#334155',
+              800: '#1e293b',
+              900: '#0f172a'
+            }
+          },
+          fontFamily: {
+            display: ['Orbitron', 'Inter', 'sans-serif'],
+            body: ['Noto Sans SC', 'Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="overflow-hidden text-neutral-200 antialiased selection:bg-neutral-700 selection:text-white h-screen w-screen relative">
+
+  <!-- Three.js Canvas Container -->
+  <div id="canvas-container" class="absolute inset-0 z-0"></div>
+
+  <!-- Loading Overlay — Planet Jumping 风格加载序列 -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <!-- 中心 logo + 轨道环 -->
+    <div class="loading-portal" id="loadingPortal">
+      <div class="loading-orbit loading-orbit--outer"></div>
+      <div class="loading-orbit loading-orbit--mid"></div>
+      <div class="loading-logo" id="loadingLogo">
+        <iconify-icon icon="lucide:orbit" width="34"></iconify-icon>
+      </div>
+    </div>
+    <!-- 底部计数器 -->
+    <div class="loading-count" id="loadingCount">
+      <span id="loadingValue">0</span><span class="loading-percent">%</span>
+    </div>
+    <!-- 加载文字 -->
+    <div class="loading-label" id="loadingLabel" data-i18n="app.loading">正在建立轨道链接</div>
+  </div>
+
+  <!-- UI Overlay Layer -->
+  <div class="absolute inset-0 z-10 pointer-events-none flex flex-col justify-between p-4 md:p-6">
+
+    <!-- Header -->
+    <header id="topBar" class="flex items-center justify-between w-full pointer-events-none">
+      <div class="glass-panel px-4 py-2 rounded-full flex items-center gap-3 pointer-events-auto">
+        <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+        <span class="font-semibold tracking-tight text-sm uppercase text-white" style="font-family:'Orbitron',sans-serif;">AeroLens</span>
+        <span class="text-neutral-500 text-xs">|</span>
+        <span class="text-neutral-400 text-xs tracking-tight" data-i18n="app.brandSub">云端相册 · LIVE</span>
+      </div>
+
+      <div class="stats-bar flex gap-2 pointer-events-auto">
+        <div class="glass-panel px-3 py-1.5 rounded-full flex items-center gap-2">
+          <iconify-icon icon="lucide:camera" width="14"></iconify-icon>
+          <span class="text-xs text-neutral-300" id="photoCount">--</span>
+          <span class="text-neutral-500 text-[10px]" data-i18n="app.statPhotos">照片</span>
+        </div>
+        <div class="glass-panel px-3 py-1.5 rounded-full flex items-center gap-2">
+          <iconify-icon icon="lucide:map-pin" width="14"></iconify-icon>
+          <span class="text-xs text-neutral-300" id="locationCount">--</span>
+          <span class="text-neutral-500 text-[10px]" data-i18n="app.statLocations">地点</span>
+        </div>
+        <div class="glass-panel px-3 py-1.5 rounded-full flex items-center gap-2">
+          <iconify-icon icon="lucide:plane" width="14"></iconify-icon>
+          <span class="text-xs text-neutral-300" id="flightCount">--</span>
+          <span class="text-neutral-500 text-[10px]" data-i18n="app.statFlights">航线</span>
+        </div>
+        <div class="glass-panel px-2 py-1.5 rounded-full flex items-center gap-2 pointer-events-auto" id="userZone">
+          <span class="user-avatar" id="userAvatar">A</span>
+          <span class="text-xs text-neutral-300 hidden lg:inline max-w-[110px] truncate" id="userEmail"></span>
+          <button id="logoutBtn" class="logout-btn" data-i18n-title="app.logout" title="退出登录">
+            <iconify-icon icon="lucide:log-out" width="14"></iconify-icon>
+            <span data-i18n="app.logout">退出</span>
+          </button>
+        </div>
+        <div class="glass-panel px-1.5 py-1 rounded-full flex items-center gap-0.5 lang-switch" role="group" aria-label="Language">
+          <button class="lang-btn active" data-lang="zh" type="button">中</button>
+          <button class="lang-btn" data-lang="en" type="button">EN</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Left Sidebar (Photo Gallery) -->
+    <aside id="sidebar" class="sidebar glass-panel rounded-2xl pointer-events-auto flex flex-col" style="position:absolute;left:16px;top:60px;bottom:80px;width:300px;">
+      <div class="sidebar-header p-4 border-b border-white/5">
+        <div class="flex items-center justify-between">
+          <h2 class="text-sm font-medium text-white tracking-tight" data-i18n="app.gallery">航拍图集</h2>
+          <div class="flex items-center gap-1.5">
+            <button id="droneBtn" class="upload-btn drone-btn flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-400/25 text-emerald-300 text-xs font-medium hover:bg-emerald-500/25 transition-colors" data-i18n-title="app.droneBtnTitle" title="连接无人机，实时同步照片">
+              <iconify-icon icon="lucide:radio-tower" width="13"></iconify-icon>
+              <span data-i18n="app.drone">无人机</span>
+            </button>
+            <button id="uploadBtn" class="upload-btn flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-sky-500/15 border border-sky-400/25 text-sky-300 text-xs font-medium hover:bg-sky-500/25 transition-colors">
+              <iconify-icon icon="lucide:upload" width="13"></iconify-icon>
+              <span data-i18n="app.upload">上传</span>
+            </button>
+            <button id="sidebarToggle" class="sidebar-toggle-btn" data-i18n-title="app.collapseGallery" title="收起图集，查看完整地球">
+              <iconify-icon icon="lucide:panel-left-close" width="15"></iconify-icon>
+            </button>
+          </div>
+        </div>
+        <div class="sidebar-filter flex gap-1.5 mt-2 flex-wrap">
+          <button class="filter-btn active" data-filter="all" data-i18n="app.fAll">全部</button>
+          <button class="filter-btn" data-filter="city" data-i18n="app.fCity">城市</button>
+          <button class="filter-btn" data-filter="nature" data-i18n="app.fNature">自然</button>
+          <button class="filter-btn" data-filter="coast" data-i18n="app.fCoast">海岸</button>
+          <button class="filter-btn" data-filter="uploaded" data-i18n="app.fUploaded">我的上传</button>
+        </div>
+      </div>
+      <div class="sidebar-search relative px-4 py-2 border-b border-white/5">
+        <iconify-icon class="absolute left-7 top-1/2 -translate-y-1/2 text-neutral-600" icon="lucide:search" width="14"></iconify-icon>
+        <input type="text" id="searchInput" class="search-input" placeholder="搜索照片地点..." data-i18n-placeholder="app.searchPh" />
+      </div>
+      <div id="photoGallery" class="photo-gallery flex-1 overflow-y-auto p-3 flex flex-col gap-2">
+        <!-- Photo cards injected by JS -->
+      </div>
+    </aside>
+
+    <!-- Sidebar Reopen (shown when the gallery is collapsed) -->
+    <button id="sidebarReopen" class="sidebar-reopen glass-panel" data-i18n-title="app.expandGallery" title="展开图集">
+      <iconify-icon icon="lucide:images" width="16"></iconify-icon>
+      <span data-i18n="app.galleryShort">图集</span>
+    </button>
+
+    <!-- Right Detail Panel -->
+    <div id="detailPanel" class="detail-panel glass-panel rounded-2xl" style="position:absolute;right:16px;top:60px;bottom:80px;width:340px;">
+      <button class="detail-close" id="detailClose">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
+      </button>
+      <div id="detailContent" class="detail-content h-full overflow-y-auto"></div>
+    </div>
+
+    <!-- Bottom Controls -->
+    <footer class="flex flex-col md:flex-row items-end md:items-center justify-between gap-4 pointer-events-none">
+      <!-- Data Readout -->
+      <div class="hidden md:flex flex-col gap-1 text-xs font-mono text-neutral-500 pointer-events-auto">
+        <div class="flex items-center gap-2">
+          <iconify-icon icon="lucide:crosshair" width="14"></iconify-icon>
+          <span id="coord-display">LAT 0.0000° • LON 0.0000°</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <iconify-icon icon="lucide:activity" width="14"></iconify-icon>
+          <span data-i18n="app.sysOk">系统正常 · 信号良好</span>
+        </div>
+      </div>
+
+      <!-- Control Deck -->
+      <div id="controlDeck" class="glass-panel w-full md:w-96 rounded-2xl pointer-events-auto control-deck collapsed">
+        <div class="control-deck-header flex items-center justify-between px-4 py-3 border-b border-white/5 cursor-pointer select-none" id="controlDeckToggle">
+          <div class="flex items-center gap-2">
+            <iconify-icon class="text-neutral-400" icon="lucide:sliders-horizontal" width="15"></iconify-icon>
+            <span class="text-sm font-medium text-white" data-i18n="app.displaySettings">显示设置</span>
+          </div>
+          <iconify-icon class="control-deck-chevron text-neutral-500 transition-transform duration-300" icon="lucide:chevron-down" width="18"></iconify-icon>
+        </div>
+
+        <div class="control-deck-body px-4 py-4 space-y-5">
+        <!-- Rotation Speed -->
+        <div class="space-y-2">
+          <div class="flex justify-between text-xs text-neutral-400">
+            <span data-i18n="app.rotation">旋转速度</span>
+            <span id="speed-val">1.0x</span>
+          </div>
+          <input type="range" min="0" max="50" value="10" class="w-full slider" id="rotation-speed" />
+        </div>
+
+        <!-- Lighting -->
+        <div class="space-y-2">
+          <div class="flex justify-between text-xs text-neutral-400">
+            <span data-i18n="app.sunlight">阳光强度</span>
+            <span id="light-val">100%</span>
+          </div>
+          <input type="range" min="0" max="200" value="100" class="w-full slider" id="sun-intensity" />
+        </div>
+
+        <!-- Toggles -->
+        <div class="flex items-center justify-between pt-1">
+          <div class="flex items-center gap-2">
+            <iconify-icon class="text-neutral-400" icon="lucide:cloud" width="16"></iconify-icon>
+            <span class="text-xs text-neutral-300" data-i18n="app.clouds">大气云层</span>
+          </div>
+          <div class="toggle-wrapper">
+            <input type="checkbox" id="atmos-toggle" class="toggle-checkbox" checked />
+            <label for="atmos-toggle" class="toggle-label"></label>
+          </div>
+        </div>
+
+        <!-- Photo Markers Toggle -->
+        <div class="flex items-center justify-between pt-1">
+          <div class="flex items-center gap-2">
+            <iconify-icon class="text-neutral-400" icon="lucide:map-pin" width="16"></iconify-icon>
+            <span class="text-xs text-neutral-300" data-i18n="app.markers">照片标记</span>
+          </div>
+          <div class="toggle-wrapper">
+            <input type="checkbox" id="markers-toggle" class="toggle-checkbox" checked />
+            <label for="markers-toggle" class="toggle-label"></label>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 pt-2">
+          <button id="reset-view" class="flex items-center justify-center gap-2 py-2 rounded-lg border border-white/10 text-xs font-medium hover:bg-white/5 transition-colors">
+            <iconify-icon icon="lucide:rotate-ccw" width="14"></iconify-icon>
+            <span data-i18n="app.resetView">重置视角</span>
+          </button>
+          <button id="auto-rotate-btn" class="flex items-center justify-center gap-2 py-2 rounded-lg bg-white text-black text-xs font-medium hover:bg-neutral-200 transition-colors">
+            <iconify-icon icon="lucide:play" width="14"></iconify-icon>
+            <span data-i18n="app.autoRotate">自动旋转</span>
+          </button>
+        </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Hover Tooltip -->
+  <div id="hoverTooltip" class="hover-tooltip"></div>
+
+  <!-- 地球点选位置提示条 -->
+  <div id="globePickHint" class="globe-pick-hint">
+    <span class="globe-pick-dot"></span>
+    <iconify-icon icon="lucide:mouse-pointer-click" width="15"></iconify-icon>
+    <span data-i18n="app.pickHint">点击地球表面选择拍摄位置</span>
+    <button type="button" id="globePickCancel" data-i18n="app.cancel">取消</button>
+  </div>
+
+  <!-- Upload Modal -->
+  <div id="uploadModal" class="upload-modal">
+    <div class="upload-modal-card glass-panel rounded-2xl">
+      <div class="upload-modal-header flex items-center justify-between px-5 py-3.5 border-b border-white/5">
+        <div class="flex items-center gap-2">
+          <iconify-icon class="text-sky-400" icon="lucide:image-up" width="18"></iconify-icon>
+          <h3 class="text-sm font-medium text-white" data-i18n="app.uploadTitle">上传航拍照片</h3>
+        </div>
+        <button id="uploadCloseBtn" class="upload-close-btn w-7 h-7 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors text-neutral-400 hover:text-white">
+          <iconify-icon icon="lucide:x" width="16"></iconify-icon>
+        </button>
+      </div>
+      <div class="upload-modal-body p-5 space-y-4">
+        <div class="upload-drop-zone" id="uploadDropZone">
+          <iconify-icon class="text-neutral-500" icon="lucide:image-up" width="36"></iconify-icon>
+          <p class="text-xs text-neutral-400 mt-2" data-i18n="app.dropHint">点击选择图片或拖拽到此处</p>
+          <p class="text-[10px] text-neutral-600 mt-0.5" data-i18n="app.dropFormats">支持 JPG / PNG / WebP</p>
+          <input type="file" id="uploadFileInput" accept="image/*" hidden />
+        </div>
+        <div class="upload-preview" id="uploadPreview" style="display:none;">
+          <img id="uploadPreviewImg" src="" alt="预览" class="upload-preview-img" />
+        </div>
+        <div class="upload-form space-y-3" id="uploadForm" style="display:none;">
+          <div class="upload-field">
+            <label data-i18n="app.fTitle">标题</label>
+            <input type="text" id="uploadTitle" placeholder="给这张照片起个名字" data-i18n-placeholder="app.titlePh" />
+          </div>
+          <div class="upload-field">
+            <div class="upload-label-row">
+              <label data-i18n="app.fLocation">拍摄位置</label>
+              <span class="loc-hint" id="locHint">未定位</span>
+            </div>
+            <div class="loc-search-wrap">
+              <iconify-icon icon="lucide:search" width="14" class="loc-search-icon"></iconify-icon>
+              <input type="text" id="uploadLocation" placeholder="搜索城市，如：上海 / Paris" autocomplete="off" data-i18n-placeholder="app.locPh" />
+              <button type="button" id="uploadPickOnGlobe" class="loc-pick-btn" data-i18n-title="app.pickBtnTitle" title="在地球上点选位置">
+                <iconify-icon icon="lucide:globe-2" width="14"></iconify-icon>
+                <span data-i18n="app.pickOnGlobe">地球点选</span>
+              </button>
+            </div>
+            <div class="loc-suggest" id="locSuggest"></div>
+            <div class="loc-coord" id="locCoord">经纬度：等待定位</div>
+          </div>
+          <div class="upload-field">
+            <label data-i18n="app.fCategory">类别</label>
+            <select id="uploadCategory">
+              <option value="city" data-i18n="app.catCity">城市</option>
+              <option value="nature" data-i18n="app.catNature">自然</option>
+              <option value="coast" data-i18n="app.catCoast">海岸</option>
+            </select>
+          </div>
+          <div class="upload-field">
+            <label data-i18n="app.fDesc">描述</label>
+            <textarea id="uploadDesc" rows="2" placeholder="描述这张照片的故事..." data-i18n-placeholder="app.descPh"></textarea>
+          </div>
+          <button id="uploadSubmitBtn" class="upload-submit-btn w-full py-2.5 rounded-xl text-sm font-medium text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all" data-i18n="app.addToAlbum" disabled>添加到相册</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Drone Sync Modal -->
+  <div id="droneModal" class="upload-modal">
+    <div class="upload-modal-card drone-modal-card glass-panel rounded-2xl">
+      <div class="upload-modal-header flex items-center justify-between px-5 py-3.5 border-b border-white/5">
+        <div class="flex items-center gap-2">
+          <iconify-icon class="text-emerald-400" icon="lucide:radio-tower" width="18"></iconify-icon>
+          <h3 class="text-sm font-medium text-white" data-i18n="app.droneTitle">连接无人机 · 实时同步</h3>
+        </div>
+        <button id="droneCloseBtn" class="upload-close-btn w-7 h-7 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors text-neutral-400 hover:text-white">
+          <iconify-icon icon="lucide:x" width="16"></iconify-icon>
+        </button>
+      </div>
+      <div class="p-5 space-y-4">
+        <!-- 连接状态条 -->
+        <div class="drone-status-bar" id="droneStatusBar">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="drone-status-dot" id="droneStatusDot"></span>
+            <span class="drone-status-text text-xs" id="droneStatusText" data-i18n="app.droneNotConnected">未连接</span>
+          </div>
+          <span class="drone-sync-count text-[10px]" id="droneSyncCount"></span>
+        </div>
+
+        <!-- 连接区：未连接时显示 -->
+        <div class="drone-pick-zone" id="dronePickZone">
+          <iconify-icon class="text-neutral-500" icon="lucide:plane" width="34"></iconify-icon>
+          <p class="text-xs text-neutral-300 mt-2 text-center" data-i18n="app.droneGuide">用 USB 连接无人机 / SD 卡 / 遥控器，选择照片文件夹后自动同步到地球</p>
+          <button id="dronePickFolderBtn" class="drone-pick-btn" data-i18n="app.dronePick">选择无人机文件夹 (DCIM)</button>
+          <p class="text-[10px] text-neutral-600 mt-0.5 text-center" data-i18n="app.droneFormats">支持 JPG 照片 · 仅导入含 GPS 的照片</p>
+        </div>
+
+        <!-- 已连接信息：连接后显示 -->
+        <div class="drone-connected" id="droneConnected" style="display:none;">
+          <div class="flex items-center gap-2 min-w-0">
+            <iconify-icon class="text-emerald-400" icon="lucide:hard-drive" width="15"></iconify-icon>
+            <span class="text-xs text-neutral-200 truncate" id="droneFolderName">--</span>
+          </div>
+          <button id="droneDisconnectBtn" class="drone-disconnect-btn" data-i18n="app.droneDisconnect">断开连接</button>
+        </div>
+
+        <!-- 自动同步开关 -->
+        <div class="flex items-center justify-between pt-1">
+          <div>
+            <div class="flex items-center gap-2">
+              <iconify-icon class="text-neutral-400" icon="lucide:refresh-cw" width="15"></iconify-icon>
+              <span class="text-xs text-neutral-300" data-i18n="app.droneAutoSync">自动同步新照片</span>
+            </div>
+            <span class="text-[10px] text-neutral-600 ml-[23px]" data-i18n="app.dronePoll">每 5 秒检查一次文件夹</span>
+          </div>
+          <div class="toggle-wrapper">
+            <input type="checkbox" id="droneAutoToggle" class="toggle-checkbox" checked />
+            <label for="droneAutoToggle" class="toggle-label"></label>
+          </div>
+        </div>
+
+        <!-- 同步日志 -->
+        <div class="drone-log-wrap">
+          <div class="drone-log-title" data-i18n="app.droneLogTitle">同步日志</div>
+          <div class="drone-log" id="droneLog"></div>
+        </div>
+
+        <p class="text-[10px] text-neutral-600 leading-relaxed" data-i18n="app.droneWifiHint">提示：Wi-Fi 直连机型受浏览器跨域限制，当前通过 USB 挂载的存储同步，与官方 App 互不冲突</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Poem Modal -->
+  <div id="poemModal" class="upload-modal">
+    <div class="upload-modal-card poem-modal-card glass-panel rounded-2xl">
+      <div class="upload-modal-header flex items-center justify-between px-5 py-3.5 border-b border-white/5">
+        <div class="flex items-center gap-2">
+          <iconify-icon class="text-amber-300" icon="lucide:feather" width="18"></iconify-icon>
+          <h3 class="text-sm font-medium text-white" data-i18n="app.poemTitle">AI 诗篇 · 为这张照片作诗</h3>
+        </div>
+        <button id="poemCloseBtn" class="upload-close-btn w-7 h-7 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors text-neutral-400 hover:text-white">
+          <iconify-icon icon="lucide:x" width="16"></iconify-icon>
+        </button>
+      </div>
+      <div class="p-5">
+        <!-- 分析阶段 -->
+        <div id="poemStage" class="poem-stage">
+          <span class="poem-stage-spinner"></span>
+          <span id="poemStageText">正在凝视照片…</span>
+        </div>
+        <!-- 诗歌正文 -->
+        <div id="poemBody" style="display:none;">
+          <div class="poem-columns">
+            <div class="poem-col">
+              <div class="poem-col-label" data-i18n="app.poemZh">中文诗</div>
+              <div class="poem-text poem-text-zh" id="poemZhText"></div>
+            </div>
+            <div class="poem-col-divider"></div>
+            <div class="poem-col">
+              <div class="poem-col-label" data-i18n="app.poemEn">English Verse</div>
+              <div class="poem-text poem-text-en" id="poemEnText"></div>
+            </div>
+          </div>
+          <div class="poem-meta" id="poemMeta"></div>
+          <button id="poemCopyBtn" class="poem-copy-btn" data-i18n="app.poemCopy">复制诗歌</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Iconify -->
+  <script src="vendor/iconify-icon.min.js" defer></script>
+  <!-- Three.js r128 (same as Orbital Earth) -->
+  <script src="vendor/three.min.js"></script>
+  <script src="vendor/OrbitControls.min.js"></script>
+  <!-- GSAP -->
+  <script src="vendor/gsap.min.js"></script>
+  <!-- App Data -->
+  <script src="js/data.js?v=20261104"></script>
+  <!-- App Logic -->
+  <script src="js/app.js?v=20261104b"></script>
+</body>
+</html>

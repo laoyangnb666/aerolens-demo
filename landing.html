@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YOUR SKY FOR YOU — AI 智能机库航拍平台</title>
+  <meta name="description" content="Your Sky For You — 景区定点部署的 AI 智能机库航拍平台。大疆机场系列全自动无人值守，AI 视觉完成构图与光影，3D 地球相册把每一张航拍钉在真实坐标上。" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23ff4d00'/%3E%3Cpath d='M15 15h10l7 12 7-12h10L36 37v12h-8V37z' fill='%230b0b0a'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/landing.css?v=20261105c" />
+</head>
+<body>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a class="nav-brand" href="#top">YOUR SKY</a>
+    <nav class="nav-links">
+      <a href="#solution" class="nav-link"><span class="nav-idx">01</span><span data-i18n="nav.product">产品</span></a>
+      <a href="#atlas" class="nav-link"><span class="nav-idx">02</span><span data-i18n="nav.atlas">相册</span></a>
+      <a href="#dock" class="nav-link"><span class="nav-idx">03</span><span data-i18n="nav.dock">机场</span></a>
+      <a href="#tech" class="nav-link"><span class="nav-idx">04</span><span data-i18n="nav.tech">技术</span></a>
+      <a href="#impact" class="nav-link"><span class="nav-idx">05</span><span data-i18n="nav.impact">影响力</span></a>
+      <a href="#esg" class="nav-link"><span class="nav-idx">06</span><span data-i18n="nav.esg">ESG</span></a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="zh">中</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <a class="nav-cta" href="#solution"><span data-i18n="nav.cta">了解产品</span><span class="cta-arrow">→</span></a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-media">
+      <img src="vendor/photos/landing_hero.jpg?v=1" alt="" />
+      <div class="hero-shade"></div>
+      <div class="hero-grid" aria-hidden="true"></div>
+    </div>
+
+    <div class="hero-topline">
+      <div class="live-tag"><span class="blink"></span><span data-i18n="hero.live">景区定点部署 · 全自动无人值守</span></div>
+      <div class="mono-tag">FOR EVERY LANDSCAPE</div>
+    </div>
+
+    <div class="hero-main">
+      <h1 class="hero-title">
+        <span class="ht-line" data-i18n="hero.t1">天际</span>
+        <span class="ht-line ht-accent" data-i18n="hero.t2">为你</span>
+      </h1>
+      <p class="hero-sub" data-i18n="hero.sub">每一片风景，都拥有专属的天际视角；每一个人，都能零门槛拍出惊艳的航拍大片。</p>
+      <div class="hero-actions">
+        <a class="btn-solid" href="#solution"><span data-i18n="hero.cta1">了解产品</span><span class="cta-arrow">→</span></a>
+        <a class="btn-ghost" href="#atlas"><span data-i18n="hero.cta2">浏览地球相册</span></a>
+      </div>
+    </div>
+
+    <div class="hero-foot">
+      <div class="hf-stats">
+        <div class="hf-stat"><span class="hf-k" data-i18n="hero.k1">设备门槛</span><span class="hf-v">0</span></div>
+        <div class="hf-stat"><span class="hf-k" data-i18n="hero.k2">操作步骤</span><span class="hf-v">1</span></div>
+        <div class="hf-stat"><span class="hf-k" data-i18n="hero.k3">全天候待命</span><span class="hf-v">24/7</span></div>
+      </div>
+      <div class="hf-side">
+        <div class="hf-anno"><span data-i18n="hero.a1">合规空域管控</span><b>100%</b></div>
+        <div class="hf-anno"><span data-i18n="hero.a2">AI 视觉决策</span><b>×3</b></div>
+        <div class="hf-anno"><span data-i18n="hero.a3">无人值守机库</span><b>DJI DOCK</b></div>
+        <div class="hf-scroll mono-tag" data-i18n="hero.scroll">SCROLL ↓</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT -->
+  <section class="section" id="solution">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow"><span data-i18n="sol.eyebrow">产品 // THE PRODUCT</span></div>
+      <h2 class="sec-title is-long" data-i18n="sol.title">把机库留在景区，把天空交给游客</h2>
+      <p class="sec-desc" data-i18n="sol.desc">Your Sky For You 在景区定点部署全自动、无人值守、合规安全的智能机库。游客不需要买无人机，不需要会操控，也不需要飞行执照。整个体验被压缩成两个动作：选一个点位，按一下。</p>
+    </div>
+
+    <div class="sol-grid">
+      <div class="sol-left">
+        <div class="sol-actions reveal">
+          <div class="sol-act"><span class="sa-num">01</span><b data-i18n="sol.a1">选一个点位</b><span data-i18n="sol.a1d">按景区、时段与风景类型选择机位</span></div>
+          <div class="sol-act"><span class="sa-num">02</span><b data-i18n="sol.a2">按一下</b><span data-i18n="sol.a2d">剩下的交给机库、AI 与云端</span></div>
+        </div>
+
+        <div class="sol-promise reveal">
+          <div class="sp-row"><span class="mono-tag" data-i18n="sol.p1k">合规</span><p data-i18n="sol.p1v">景区定点部署，统一空域管控，杜绝黑飞风险。</p></div>
+          <div class="sp-row"><span class="mono-tag" data-i18n="sol.p2k">零门槛</span><p data-i18n="sol.p2v">无需设备、无需操控、无需飞行执照。</p></div>
+          <div class="sp-row"><span class="mono-tag" data-i18n="sol.p3k">稳定</span><p data-i18n="sol.p3v">和专业航拍相比，门槛被拿掉了，画质与视角反而更稳定。</p></div>
+        </div>
+
+        <figure class="sol-figure reveal">
+          <img src="vendor/photos/dji_dock3_studio.jpg" alt="DJI Dock 3 with Matrice 4D" loading="lazy" />
+          <figcaption class="mono-tag" data-i18n="sol.fig">大疆机场 3 // 精准回舱 · 触点充电 · 自动回传</figcaption>
+        </figure>
+      </div>
+
+      <div class="sol-right reveal">
+        <div class="sol-compare-label mono-tag" data-i18n="sol.compare">对比 // BEFORE &amp; AFTER</div>
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th data-i18n="sol.th1">维度</th>
+              <th data-i18n="sol.th2">传统航拍</th>
+              <th class="th-accent" data-i18n="sol.th3">YOUR SKY</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td data-i18n="sol.r1k">设备</td><td data-i18n="sol.r1a">自购无人机与电池</td><td class="td-accent" data-i18n="sol.r1b">景区机库，无需购买</td></tr>
+            <tr><td data-i18n="sol.r2k">空域</td><td data-i18n="sol.r2a">私人飞行，多地禁飞</td><td class="td-accent" data-i18n="sol.r2b">定点部署，统一管控</td></tr>
+            <tr><td data-i18n="sol.r3k">技能</td><td data-i18n="sol.r3a">需要长期练习</td><td class="td-accent" data-i18n="sol.r3b">AI 全流程，零门槛</td></tr>
+            <tr><td data-i18n="sol.r4k">成片</td><td data-i18n="sol.r4a">依赖个人经验</td><td class="td-accent" data-i18n="sol.r4b">稳定构图与光影</td></tr>
+            <tr><td data-i18n="sol.r5k">留存</td><td data-i18n="sol.r5a">本地相册，难以回看</td><td class="td-accent" data-i18n="sol.r5b">3D 地球相册，坐标可回看</td></tr>
+          </tbody>
+        </table>
+        <p class="table-note mono-tag" data-i18n="sol.note">SAME LANDSCAPE · DIFFERENT ALTITUDE</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="section section-alt" id="gap">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow"><span data-i18n="gap.eyebrow">为什么 // WHY IT MATTERS</span></div>
+      <h2 class="sec-title" data-i18n="gap.title">旅拍的四道坎</h2>
+      <p class="sec-desc" data-i18n="gap.desc">旅行途中，人人都想留下一张「我来过」的照片。但举起手机，得到的常常是人潮、平视，和一张没有自己的风景。景区拥挤、视角单一、空域禁飞、专业能力——这不是游客审美不行，而是设备、空域和技术一起把专业航拍变成了少数人的特权。</p>
+    </div>
+
+    <div class="pain-grid">
+      <article class="pain reveal">
+        <span class="pain-num">PAIN 01</span>
+        <h3 class="pain-h" data-i18n="gap.h1">景区拥挤，拍摄受限</h3>
+        <p class="pain-p" data-i18n="gap.p1">热门机位人潮密集，三脚架和自拍杆常常展不开；最好的光影只有几分钟，拍摄很容易仓促杂乱。</p>
+      </article>
+      <article class="pain reveal">
+        <span class="pain-num">PAIN 02</span>
+        <h3 class="pain-h" data-i18n="gap.h2">独行拍摄，视角单一</h3>
+        <p class="pain-p" data-i18n="gap.p2">一个人旅行时，手持机位固定、取景范围狭窄，人与全景很难同框。想要「人在景中」的高级感，最后只能靠运气。</p>
+      </article>
+      <article class="pain reveal">
+        <span class="pain-num">PAIN 03</span>
+        <h3 class="pain-h" data-i18n="gap.h3">空域禁飞，门槛极高</h3>
+        <p class="pain-p" data-i18n="gap.p3">核心景区空域管控严格，私人无人机禁止飞行，即便买了设备，也常常无处可飞。</p>
+      </article>
+      <article class="pain reveal">
+        <span class="pain-num">PAIN 04</span>
+        <h3 class="pain-h" data-i18n="gap.h4">缺乏专业摄影能力</h3>
+        <p class="pain-p" data-i18n="gap.p4">构图、光影、机位都依赖长期经验。普通用户反复拍摄，画面依然扁平、缺少层次，最后就变成一句「拍不出来」。</p>
+      </article>
+    </div>
+
+    <div class="impact-trio reveal">
+      <div class="it-cell">
+        <span class="it-k mono-tag" data-i18n="gap.t1k">对个人</span>
+        <p data-i18n="gap.t1v">挡住的是影像平权：没有设备、没有技术的人，本该也能拥有专业视角。</p>
+      </div>
+      <div class="it-cell">
+        <span class="it-k mono-tag" data-i18n="gap.t2k">对景区</span>
+        <p data-i18n="gap.t2v">少了一种可消费、可传播的体验增量，游客停留时间与二次传播都被浪费。</p>
+      </div>
+      <div class="it-cell">
+        <span class="it-k mono-tag" data-i18n="gap.t3k">对社会</span>
+        <p data-i18n="gap.t3v">大量普通人的旅行记忆，无法以真实坐标沉淀下来，成为可回看的地理资产。</p>
+      </div>
+    </div>
+
+    <div class="pain-note reveal">
+      <p data-i18n="gap.note">所以我们做这件事，不只是看到一个产品机会，而是把它当成一次影像平权。</p>
+      <a class="btn-ghost" href="#atlas"><span data-i18n="gap.cta">看看它拍下了什么</span><span class="cta-arrow">→</span></a>
+    </div>
+  </section>
+
+  <!-- ATLAS -->
+  <section class="section" id="atlas">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow"><span data-i18n="atlas.eyebrow">地球相册 // THE ATLAS</span></div>
+      <h2 class="sec-title" data-i18n-html="atlas.title">照片不躺在相册里，<br />而是钉在地球上</h2>
+      <p class="sec-desc" data-i18n="atlas.desc">每张作品自动绑定经纬度、机型、飞行高度，以及 ISO、光圈、快门这些参数。你可以在全球点位之间浏览，按风景分类检索，也可以回看一整段旅途轨迹。它不是更花哨的相册，而是可以重新走一遍的地理记忆。</p>
+    </div>
+
+    <!-- 城市 -->
+    <div class="gallery-group reveal">
+      <div class="gg-head">
+        <h3><span data-i18n="atlas.gCity">城市</span><em>CITY</em></h3>
+        <span class="mono-tag" data-i18n="atlas.count3">3 个点位</span>
+      </div>
+      <div class="gg-grid">
+        <article class="shot">
+          <div class="shot-media">
+            <img src="vendor/photos/p011_hero.jpg" alt="Dubai skyline at dusk with Burj Khalifa" loading="lazy" />
+            <span class="m-tag">DUBAI</span>
+            <span class="m-status"><span class="blink"></span>ACTIVE</span>
+          </div>
+          <div class="shot-body">
+            <div class="shot-loc mono-tag">25.1972° N — 55.2744° E</div>
+            <h4 data-i18n="atlas.city1t">哈利法塔暮色</h4>
+            <p data-i18n="atlas.city1d">沙漠与海湾之间，828 米的高度刺破暮色。</p>
+          </div>
+        </article>
+        <article class="shot">
+          <div class="shot-media">
+            <img src="vendor/photos/p013_hero.jpg" alt="Eiffel Tower glowing above the Seine at night" loading="lazy" />
+            <span class="m-tag">PARIS</span>
+            <span class="m-status"><span class="blink"></span>ACTIVE</span>
+          </div>
+          <div class="shot-body">
+            <div class="shot-loc mono-tag">48.8584° N — 2.2945° E</div>
+            <h4 data-i18n="atlas.city2t">塞纳河之夜</h4>
+            <p data-i18n="atlas.city2d">铁塔亮灯的瞬间，整条塞纳河变成金色。</p>
+          </div>
+        </article>
+        <article class="shot">
+          <div class="shot-media">
+            <img src="vendor/photos/p014_hero.jpg" alt="Empire State Building over Manhattan at dusk" loading="lazy" />
+            <span class="m-tag">NEW YORK</span>
+            <span class="m-status"><span class="blink"></span>ACTIVE</span>
+          </div>
+          <div class="shot-body">
+            <div class="shot-loc mono-tag">40.7484° N — 73.9857° W</div>
+            <h4 data-i18n="atlas.city3t">曼哈顿暮色</h4>
+            <p data-i18n="atlas.city3d">帝国大厦亮起灯，万家灯火同时回答黄昏。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- 海岸 -->
+    <div class="gallery-group reveal">
+      <div class="gg-head">
+        <h3><span data-i18n="atlas.gCoast">海岸</span><em>COAST</em></h3>
+        <span class="mono-tag" data-i18n="atlas.count3">3 个点位</span>
+      </div>
+      <div class="gg-grid">
+        <article class="shot">
+          <div class="shot-media">
+            <img src="vendor/photos/p005_hero.jpg" alt="Turquoise tropical lagoon" loading="lazy" />
+            <span class="m-tag">MALDIVES</span>
+            <span class="m-status"><span class="blink"></span>ACTIVE</span>
+          </div>
+          <div class="shot-body">
+            <div class="shot-loc mono-tag">3.2028° N — 73.2207° E</div>
+            <h4 data-i18n="atlas.coast1t">环礁蓝</h4>
+            <p data-i18n="atlas.coast1d">深浅不一的蓝，是海底地形写下的等高线。</p>
+          </div>
+        </article>
+        <article class="shot">
+          <div class="shot-media">
+            <img src="vendor/photos/p008_hero.jpg" alt="Coral atoll" loading="lazy" />
+            <span class="m-tag">CORAL ATOLL</span>
+            <span class="m-status"><span class="blink"></span>ACTIVE</span>
+          </div>
+          <div class="shot-body">
+            <div class="shot-loc mono-tag">18.2871° S — 147.6992° E</div>
+            <h4 data-i18n="atlas.coast2t">珊瑚环礁</h4>
+            <p data-i18n="atlas.coast2d">一圈白沙把海分成两种颜色，也把时间分成两层。</p>
+          </div>
+        </article>
+        <article class="shot">
+          <div class="shot-media">
+            <img src="vendor/photos/p012_hero.jpg" alt="Santorini coastline" loading="lazy" />
+            <span class="m-tag">SANTORINI</span>
+            <span class="m-status"><span class="blink"></span>ACTIVE</span>
+          </div>
+          <div class="shot-body">
+            <div class="shot-loc mono-tag">36.3932° N — 25.4615° E</div>
+            <h4 data-i18n="atlas.coast3t">爱琴海岸</h4>
+            <p data-i18n="atlas.coast3d">白墙蓝顶沿着火山崖壁层层落向海面。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- 自然 -->
+    <div class="gallery-group reveal">
+      <div class="gg-head">
+        <h3><span data-i18n="atlas.gNature">自然</span><em>NATURE</em></h3>
+        <span class="mono-tag" data-i18n="atlas.count3">3 个点位</span>
+      </div>
+      <div class="gg-grid">
+        <article class="shot">
+          <div class="shot-media">
+            <img src="vendor/photos/p009_hero.jpg" alt="Snow mountain ridge" loading="lazy" />
+            <span class="m-tag">ALPS</span>
+            <span class="m-status"><span class="blink"></span>ACTIVE</span>
+          </div>
+          <div class="shot-body">
+            <div class="shot-loc mono-tag">46.5763° N — 8.8926° E</div>
+            <h4 data-i18n="atlas.nat1t">雪线之上</h4>
+            <p data-i18n="atlas.nat1d">云层之下，山脊像被光削出的刀锋。</p>
+          </div>
+        </article>
+        <article class="shot">
+          <div class="shot-media">
+            <img src="vendor/photos/p010_hero.jpg" alt="Glacier lagoon" loading="lazy" />
+            <span class="m-tag">ICELAND</span>
+            <span class="m-status"><span class="blink"></span>ACTIVE</span>
+          </div>
+          <div class="shot-body">
+            <div class="shot-loc mono-tag">64.0484° N — 16.1790° W</div>
+            <h4 data-i18n="atlas.nat2t">冰川湖</h4>
+            <p data-i18n="atlas.nat2d">浮冰把湖面切成缓慢移动的拼图。</p>
+          </div>
+        </article>
+        <article class="shot">
+          <div class="shot-media">
+            <img src="vendor/photos/p022_hero.jpg" alt="Rainforest river bend" loading="lazy" />
+            <span class="m-tag">AMAZON</span>
+            <span class="m-status"><span class="blink"></span>ACTIVE</span>
+          </div>
+          <div class="shot-body">
+            <div class="shot-loc mono-tag">3.4653° S — 62.2159° W</div>
+            <h4 data-i18n="atlas.nat3t">雨林河曲</h4>
+            <p data-i18n="atlas.nat3d">一条河在绿色里反复转弯，直到看不见尽头。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="meta-panel reveal">
+      <div class="mp-head">
+        <span class="mp-live"><span class="blink"></span><span data-i18n="atlas.mpH">实时参数面板 // LIVE METADATA</span></span>
+        <span class="mono-tag">DJI MATRICE 4D · SAMPLE</span>
+      </div>
+      <div class="mp-grid">
+        <div class="mp-cell"><span class="mono-tag">LAT</span><b>29.5630° N</b></div>
+        <div class="mp-cell"><span class="mono-tag">LNG</span><b>106.5516° E</b></div>
+        <div class="mp-cell"><span class="mono-tag">ALT</span><b>412 M</b></div>
+        <div class="mp-cell"><span class="mono-tag">ISO</span><b>100</b></div>
+        <div class="mp-cell"><span class="mono-tag">APERTURE</span><b>f/2.8</b></div>
+        <div class="mp-cell"><span class="mono-tag">SHUTTER</span><b>1/640 S</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT RUNS -->
+  <section class="section section-alt" id="run">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow"><span data-i18n="run.eyebrow">运行方式 // HOW IT RUNS</span></div>
+      <h2 class="sec-title" data-i18n="run.title">一次点击，四次自动</h2>
+      <p class="sec-desc" data-i18n="run.desc">从预约到返航，四步全部无人干预，用户端只剩「选」和「按」。</p>
+    </div>
+
+    <div class="run-grid">
+      <article class="run-step reveal"><span class="rs-idx">01</span><h3 data-i18n="run.h1">预约</h3><p data-i18n="run.p1">游客选择景区点位和时段，系统分配最近的机库。</p><span class="rs-tag mono-tag" data-i18n="run.t1">BOOKING</span></article>
+      <article class="run-step reveal"><span class="rs-idx">02</span><h3 data-i18n="run.h2">起飞</h3><p data-i18n="run.p2">机库开舱，无人机按预设航线自动起飞。</p><span class="rs-tag mono-tag" data-i18n="run.t2">TAKE-OFF</span></article>
+      <article class="run-step reveal"><span class="rs-idx">03</span><h3 data-i18n="run.h3">拍摄</h3><p data-i18n="run.p3">AI 识别场景，自动完成构图、曝光和连拍。</p><span class="rs-tag mono-tag" data-i18n="run.t3">CAPTURE</span></article>
+      <article class="run-step reveal"><span class="rs-idx">04</span><h3 data-i18n="run.h4">返航</h3><p data-i18n="run.p4">无人机精准回舱、自主补电，原片自动回传云端。</p><span class="rs-tag mono-tag" data-i18n="run.t4">RETURN</span></article>
+    </div>
+
+    <figure class="wide-figure reveal">
+      <img src="vendor/photos/dji_dock3_solar.jpg" alt="DJI Dock 3 at a solar farm with Matrice 4D in flight" loading="lazy" />
+      <figcaption>
+        <span class="ov ov-a"><b data-i18n="run.ov1t">智能机库</b><span data-i18n="run.ov1s">状态：全自动待命</span><span data-i18n="run.ov1u">补电：自主完成</span></span>
+        <span class="ov ov-b"><b data-i18n="run.ov2t">AI 拍摄</b><span data-i18n="run.ov2s">决策：识别 → 构图 → 曝光</span><span data-i18n="run.ov2u">回传：云端秒级</span></span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- DJI DOCK -->
+  <section class="section" id="dock">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow"><span data-i18n="dock.eyebrow">硬件设备 // DJI DOCK SERIES</span></div>
+      <h2 class="sec-title is-long" data-i18n="dock.title">大疆机场系列，全天候无人值守</h2>
+      <p class="sec-desc" data-i18n="dock.desc">飞行这件事，我们选择交给已经成熟的工业体系，而不是自己造飞行器。大疆司空平台负责任务调度、航线规划、远程监控与多机集群；硬件侧使用大疆机场系列与行业级无人机，保证飞行稳定、画质与全天候运行。</p>
+    </div>
+
+    <figure class="dock-hero reveal">
+      <img src="vendor/photos/dji_dock3_solar.jpg" alt="DJI Dock 3 at a solar farm" loading="lazy" />
+      <figcaption class="dock-stats">
+        <div class="ds"><b>55 KG</b><span data-i18n="dock.s1">整机重量</span></div>
+        <div class="ds"><b>IP56</b><span data-i18n="dock.s2">防护等级</span></div>
+        <div class="ds"><b>-30~50°C</b><span data-i18n="dock.s3">工作温度</span></div>
+        <div class="ds"><b>54 MIN</b><span data-i18n="dock.s4">最长飞行</span></div>
+        <div class="ds"><b>10 KM</b><span data-i18n="dock.s5">作业半径</span></div>
+      </figcaption>
+    </figure>
+
+    <div class="dock-gallery reveal">
+      <figure>
+        <img src="vendor/photos/dji_dock3_studio.jpg" alt="DJI Dock 3 product shot with drone" loading="lazy" />
+        <figcaption><b data-i18n="dock.g1t">产品外观</b><span data-i18n="dock.g1s">全自动机库 + Matrice 4D</span></figcaption>
+      </figure>
+      <figure>
+        <img src="vendor/photos/dji_dock3_vehicle.jpg" alt="DJI Dock 3 vehicle deployment" loading="lazy" />
+        <figcaption><b data-i18n="dock.g2t">车载部署</b><span data-i18n="dock.g2s">固定与移动两种模式</span></figcaption>
+      </figure>
+      <figure>
+        <img src="vendor/photos/dji_dock3_sensor.jpg" alt="DJI Dock 3 environmental sensors" loading="lazy" />
+        <figcaption><b data-i18n="dock.g3t">环境感知</b><span data-i18n="dock.g3s">风速 · 雨量 · 温度 · 水浸</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="dock-grid">
+      <div class="dock-specs reveal">
+        <div class="ds-head"><span class="mono-tag" data-i18n="dock.tableTitle">机型对比 // DOCK 3 vs DOCK 2</span><span class="mono-tag">OFFICIAL SPECS</span></div>
+        <div class="table-wrap">
+          <table class="spec-table">
+            <thead><tr><th data-i18n="dock.col1">参数</th><th class="th-accent">大疆机场 3</th><th>大疆机场 2</th></tr></thead>
+            <tbody>
+              <tr><td data-i18n="dock.r1">整机重量</td><td class="td-accent">55 kg</td><td>34 kg</td></tr>
+              <tr><td data-i18n="dock.r2">防护等级</td><td class="td-accent">IP56</td><td>IP55</td></tr>
+              <tr><td data-i18n="dock.r3">工作温度</td><td class="td-accent">-30°C ~ 50°C</td><td>-25°C ~ 45°C</td></tr>
+              <tr><td data-i18n="dock.r4">最大运行海拔</td><td class="td-accent">4,500 m</td><td>4,000 m</td></tr>
+              <tr><td data-i18n="dock.r5">充电时间</td><td class="td-accent">27 min（15%→95%）</td><td>32 min（20%→90%）</td></tr>
+              <tr><td data-i18n="dock.r6">适配飞行器</td><td class="td-accent">Matrice 4D / 4TD</td><td>Matrice 3D / 3TD</td></tr>
+              <tr><td data-i18n="dock.r7">图传天线</td><td class="td-accent">内置九天线</td><td>内置四天线</td></tr>
+              <tr><td data-i18n="dock.r8">云平台</td><td class="td-accent">司空 2 / 上云 API</td><td>司空 2 / 上云 API</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note mono-tag" data-i18n="dock.note">数据来源：大疆行业应用官方技术参数</p>
+      </div>
+
+      <div class="dock-side reveal">
+        <div class="aircraft-card">
+          <div class="ac-media"><img src="vendor/photos/dji_matrice4d_city.jpg" alt="Matrice 4D over a city" loading="lazy" /></div>
+          <div class="ac-top"><span class="mono-tag">AIRCRAFT</span><span class="ac-model">MATRICE 4D</span></div>
+          <p data-i18n="dock.m4d">4/3 CMOS 广角 2,000 万像素，中长焦与长焦均 4,800 万像素；54 分钟最长飞行，激光测距最远 1,800 米。</p>
+          <div class="ac-specs"><span>IP55</span><span>54 MIN</span><span>10 KM</span><span>4K / 30FPS</span></div>
+        </div>
+        <div class="aircraft-card">
+          <div class="ac-media"><img src="vendor/photos/dji_matrice4td_fire.jpg" alt="Matrice 4TD on a wildfire mission" loading="lazy" /></div>
+          <div class="ac-top"><span class="mono-tag">AIRCRAFT</span><span class="ac-model">MATRICE 4TD</span></div>
+          <p data-i18n="dock.m4td">在 4D 基础上增加 640×512 热成像与近红外补光，支持夜间与热异常场景的巡检级作业。</p>
+          <div class="ac-specs"><span>THERMAL</span><span>640×512</span><span>IP55</span><span>NIGHT OPS</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dock-status reveal">
+      <div class="ds-row"><span data-i18n="dock.st1">任务调度</span><b data-i18n="dock.st1v">已接入</b></div>
+      <div class="ds-row"><span data-i18n="dock.st2">航线规划</span><b data-i18n="dock.st2v">自动生成</b></div>
+      <div class="ds-row"><span data-i18n="dock.st3">返航充电</span><b data-i18n="dock.st3v">自主完成</b></div>
+      <div class="ds-row"><span data-i18n="dock.st4">环境监测</span><b data-i18n="dock.st4v">风速 / 雨量 / 水浸</b></div>
+    </div>
+
+    <div class="dock-verdict reveal">
+      <p data-i18n="dock.verdict">把飞行安全交给成熟平台，团队专注体验与算法。</p>
+      <a class="source-link mono-tag" href="https://enterprise.dji.com/cn/mobile/dock-3/specs" target="_blank" rel="noopener noreferrer">DJI DOCK 3 SPECS ↗</a>
+    </div>
+  </section>
+
+  <!-- TECHNOLOGY -->
+  <section class="section section-alt" id="tech">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow"><span data-i18n="tech.eyebrow">技术架构 // TECHNOLOGY</span></div>
+      <h2 class="sec-title" data-i18n="tech.title">四层技术栈</h2>
+      <p class="sec-desc" data-i18n="tech.desc">硬件自动化、前端可视化、AI 视觉与大模型四层协同，软硬件深度联动。横向由 DeepSeek v4 辅助前端 UI 逆向开发。</p>
+    </div>
+
+    <div class="tech-grid">
+      <div class="layer-list reveal">
+        <div class="layer"><span class="layer-tag">L4</span><div class="layer-body"><b data-i18n="tech.h4">大模型层</b><p data-i18n="tech.p4">GLM-5.3-Flash 做图像理解与文案生成，让每张照片配得上一句诗。</p></div><span class="layer-meta mono-tag">LLM</span></div>
+        <div class="layer"><span class="layer-tag">L3</span><div class="layer-body"><b data-i18n="tech.h3">AI 视觉层</b><p data-i18n="tech.p3">场景识别、智能构图、光影优化三类算法，在快门之前完成专业决策。</p></div><span class="layer-meta mono-tag">VISION</span></div>
+        <div class="layer"><span class="layer-tag">L2</span><div class="layer-body"><b data-i18n="tech.h2">可视化层</b><p data-i18n="tech.p2">Three.js 三维地球与 Blender 高精度模型，覆盖移动端与云端界面。</p></div><span class="layer-meta mono-tag">FRONT-END</span></div>
+        <div class="layer"><span class="layer-tag">L1</span><div class="layer-body"><b data-i18n="tech.h1">硬件自动化层</b><p data-i18n="tech.p1">大疆司空 FlightHub 2 飞控、行业级无人机与标准化机库完成调度与起降。</p></div><span class="layer-meta mono-tag">HARDWARE</span></div>
+      </div>
+      <figure class="tech-figure reveal"><img src="vendor/photos/landing_orbit.jpg?v=1" alt="Earth from orbit" loading="lazy" /><figcaption class="mono-tag" data-i18n="tech.fig">3D EARTH // 每一张照片都有真实坐标</figcaption></figure>
+    </div>
+
+    <div class="regions reveal">
+      <span class="regions-label mono-tag" data-i18n="tech.stack">技术栈 // POWERED BY</span>
+      <div class="marquee"><div class="marquee-track">
+        <span>DJI FLIGHTHUB 2</span><i>+</i><span>DJI DOCK 3</span><i>+</i><span>MATRICE 4D</span><i>+</i><span>THREE.JS</span><i>+</i><span>BLENDER</span><i>+</i><span>DEEPSEEK V4</span><i>+</i><span>GLM-5.3-FLASH</span><i>+</i><span>AI VISION</span><i>+</i><span>DJI FLIGHTHUB 2</span><i>+</i><span>DJI DOCK 3</span><i>+</i><span>MATRICE 4D</span><i>+</i><span>THREE.JS</span><i>+</i><span>BLENDER</span><i>+</i><span>DEEPSEEK V4</span><i>+</i><span>GLM-5.3-FLASH</span><i>+</i><span>AI VISION</span><i>+</i>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- IN-HOUSE -->
+  <section class="section" id="self">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow"><span data-i18n="self.eyebrow">自研能力 // IN-HOUSE</span></div>
+      <h2 class="sec-title" data-i18n="self.title">前端与三维，两块自研</h2>
+      <p class="sec-desc" data-i18n="self.desc">一块解决「怎么用」，一块解决「怎么看见」。自研不是重复造轮子，而是把体验的关键环节握在自己手里。</p>
+    </div>
+
+    <div class="self-grid">
+      <article class="self-card reveal">
+        <div class="sc-head"><span class="sc-letter">A</span><span class="mono-tag" data-i18n="self.aTag">FRONT-END ENGINEERING</span></div>
+        <h3 data-i18n="self.aTitle">DeepSeek v4 前端 UI 逆向开发</h3>
+        <p data-i18n="self.aDesc">我们对标高端可视化产品，拆解界面与交互范式，自动适配移动端与云端布局，解决迭代慢、适配差、交互生硬的问题。</p>
+        <div class="sc-tags"><span>RESPONSIVE</span><span>DESIGN SYSTEM</span><span>MOTION</span></div>
+      </article>
+      <article class="self-card reveal">
+        <div class="sc-head"><span class="sc-letter">B</span><span class="mono-tag" data-i18n="self.bTag">3D MODELING</span></div>
+        <h3 data-i18n="self.bTitle">Blender 三维地球建模</h3>
+        <p data-i18n="self.bDesc">自建高精度地球模型，还原地貌纹理，让照片按经纬度精准挂载、按地域分类、按轨迹渲染；再用轻量化算法保证缩放、切换与检索流畅。</p>
+        <div class="sc-tags"><span>GLOBE</span><span>TERRAIN</span><span>LIGHTWEIGHT</span></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- AI VISION -->
+  <section class="section section-alt" id="vision">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow"><span data-i18n="av.eyebrow">AI 视觉 // AI VISION</span></div>
+      <h2 class="sec-title" data-i18n="av.title">零门槛，不等于拍得普通</h2>
+      <p class="sec-desc" data-i18n="av.desc">按下快门之前，三类算法已经替用户做完了专业决策。用户只需要站在风景里。</p>
+    </div>
+
+    <div class="av-grid">
+      <article class="av-card reveal"><span class="av-idx">01</span><h3 data-i18n="av.h1">场景识别</h3><p data-i18n="av.p1">先看懂山川、云海、日落、城市海岸线和人文建筑，匹配不同的拍摄逻辑。</p><span class="av-tag mono-tag">RECOGNITION</span></article>
+      <article class="av-card reveal"><span class="av-idx">02</span><h3 data-i18n="av.h2">智能构图</h3><p data-i18n="av.p2">内置摄影美学模型，自适应黄金构图、全景构图与人像融合构图。</p><span class="av-tag mono-tag">COMPOSITION</span></article>
+      <article class="av-card reveal"><span class="av-idx">03</span><h3 data-i18n="av.h3">光影优化</h3><p data-i18n="av.p3">实时感知光强和角度，自动调节参数与成片色调，保留现场氛围。</p><span class="av-tag mono-tag">EXPOSURE</span></article>
+    </div>
+
+    <figure class="vision-figure reveal">
+      <img src="vendor/photos/vision_ridge.jpg" alt="Aerial view of a mountain ridge at sunrise" loading="lazy" />
+      <div class="vf-grid" aria-hidden="true"></div>
+      <figcaption>
+        <span class="vf-tag"><span class="blink"></span><span data-i18n="av.flow">识别 → 构图 → 曝光</span></span>
+        <span class="vf-note mono-tag" data-i18n="av.note">AI 在快门之前完成三步决策</span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- LLM -->
+  <section class="section" id="llm">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow"><span data-i18n="llm.eyebrow">大模型 // GLM-5.3-FLASH</span></div>
+      <h2 class="sec-title" data-i18n="llm.title">让每一张航拍，配得上一句诗</h2>
+      <p class="sec-desc" data-i18n="llm.desc">GLM-5.3-Flash 先做图像理解，解析风景元素、光影氛围、场景风格与画面层次；再结合拍摄地点、时节和氛围，生成古风诗句、文艺文案或治愈短句。</p>
+    </div>
+
+    <div class="llm-grid">
+      <div class="llm-left reveal">
+        <div class="llm-flow">
+          <div class="lf-step"><span class="mono-tag">01</span><b data-i18n="llm.f1">上传</b><p data-i18n="llm.f1d">原片自动回传云端</p></div>
+          <div class="lf-step"><span class="mono-tag">02</span><b data-i18n="llm.f2">理解</b><p data-i18n="llm.f2d">解析元素、光影与层次</p></div>
+          <div class="lf-step"><span class="mono-tag">03</span><b data-i18n="llm.f3">成文</b><p data-i18n="llm.f3d">秒级生成专属文案</p></div>
+        </div>
+        <div class="llm-tags">
+          <span data-i18n="llm.t1">古风</span><span data-i18n="llm.t2">文艺</span><span data-i18n="llm.t3">简约</span><span data-i18n="llm.t4">治愈</span>
+        </div>
+        <p class="llm-foot mono-tag" data-i18n="llm.foot">SECONDS · MULTI-STYLE · PER PHOTO</p>
+      </div>
+
+      <div class="poem-card reveal">
+        <div class="pc-head"><span class="mono-tag">GLM-5.3-FLASH // OUTPUT</span><span class="pc-dot"><span class="blink"></span>LIVE</span></div>
+        <blockquote class="pc-poem" data-i18n-html="llm.poem">云开千嶂出<br />风过一湖平</blockquote>
+        <div class="pc-meta">
+          <div class="pc-row"><span class="mono-tag" data-i18n="llm.style">风格</span><b data-i18n="llm.styleV">古风 · 七言</b></div>
+          <div class="pc-row"><span class="mono-tag" data-i18n="llm.scene">场景</span><b data-i18n="llm.sceneV">云海 / 群山 / 日出</b></div>
+          <div class="pc-row"><span class="mono-tag" data-i18n="llm.time">生成耗时</span><b>1.2 S</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="section section-alt" id="advantages">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow"><span data-i18n="adv.eyebrow">核心优势 // WHY YOUR SKY</span></div>
+      <h2 class="sec-title" data-i18n="adv.title">选择 YOUR SKY 的五个理由</h2>
+      <p class="sec-desc" data-i18n="adv.desc">从合规到成片，从留存到文案，一套系统覆盖完整链路。</p>
+    </div>
+
+    <div class="adv-list reveal">
+      <div class="adv-row"><span class="adv-q">01</span><b class="adv-a" data-i18n="adv.a1">合规安全</b><p data-i18n="adv.d1">景区定点部署、统一空域管控，杜绝黑飞风险。</p></div>
+      <div class="adv-row"><span class="adv-q">02</span><b class="adv-a" data-i18n="adv.a2">零门槛体验</b><p data-i18n="adv.d2">无需设备、无需操控、无需飞行执照。</p></div>
+      <div class="adv-row"><span class="adv-q">03</span><b class="adv-a" data-i18n="adv.a3">AI 全流程</b><p data-i18n="adv.d3">智能构图、光影优化、场景自适应拍摄。</p></div>
+      <div class="adv-row"><span class="adv-q">04</span><b class="adv-a" data-i18n="adv.a4">3D 地球相册</b><p data-i18n="adv.d4">作品钉在真实坐标上，可视化留存与回看旅途。</p></div>
+      <div class="adv-row"><span class="adv-q">05</span><b class="adv-a" data-i18n="adv.a5">大模型文案</b><p data-i18n="adv.d5">图像智能分析，生成专属诗句与分享文案。</p></div>
+    </div>
+  </section>
+
+  <!-- SOCIAL IMPACT -->
+  <section class="section" id="impact">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow"><span data-i18n="impact.eyebrow">社会影响力 // SOCIAL IMPACT</span></div>
+      <h2 class="sec-title is-long" data-i18n="impact.title">让专业航拍，成为一项公共能力</h2>
+      <p class="sec-desc" data-i18n="impact.desc">我们不只是做一台更好用的相机，而是在重新分配「看见风景」的能力。机库网络一旦成为景区基础设施，受益者就不只是游客。</p>
+    </div>
+
+    <div class="social-grid">
+      <article class="social-card reveal">
+        <span class="sc-idx">01</span>
+        <h3 data-i18n="impact.h1">影像平权</h3>
+        <p data-i18n="impact.p1">没有设备、没有技术、没有执照的人，也能获得专业视角。影像表达不再由预算和技能决定。</p>
+      </article>
+      <article class="social-card reveal">
+        <span class="sc-idx">02</span>
+        <h3 data-i18n="impact.h2">文旅体验增量</h3>
+        <p data-i18n="impact.p2">为景区提供可消费、可传播的体验产品，延长停留时间，也让游客成为目的地的高质量传播者。</p>
+      </article>
+      <article class="social-card reveal">
+        <span class="sc-idx">03</span>
+        <h3 data-i18n="impact.h3">地理记忆资产</h3>
+        <p data-i18n="impact.p3">普通人的旅行记忆以真实坐标沉淀，形成可回看、可检索、可传承的个人地理档案。</p>
+      </article>
+      <article class="social-card reveal">
+        <span class="sc-idx">04</span>
+        <h3 data-i18n="impact.h4">公共基础设施</h3>
+        <p data-i18n="impact.p4">同一套机库网络可在非高峰时段复用于景区巡检、应急勘察与生态监测，提高公共资源利用率。</p>
+      </article>
+    </div>
+
+    <figure class="wide-figure impact-figure reveal">
+      <img src="vendor/photos/social_impact.jpg" alt="Family looking at an aerial photograph on a tablet" loading="lazy" />
+      <figcaption>
+        <span class="ov ov-a"><b data-i18n="impact.figT">影像平权</b><span data-i18n="impact.figS">三代人 · 同一片天空</span></span>
+      </figcaption>
+    </figure>
+
+    <div class="impact-levels reveal">
+      <div class="il-head"><span class="mono-tag" data-i18n="impact.lvHead">价值层级 // VALUE LAYERS</span></div>
+      <div class="il-row"><span class="il-k" data-i18n="impact.l1k">个人</span><p data-i18n="impact.l1v">从「拍不到」到「零门槛拥有专业航拍」。</p></div>
+      <div class="il-row"><span class="il-k" data-i18n="impact.l2k">景区</span><p data-i18n="impact.l2v">从「收门票」到「提供可传播的体验增量」。</p></div>
+      <div class="il-row"><span class="il-k" data-i18n="impact.l3k">社会</span><p data-i18n="impact.l3v">从「少数人的玩具」到「可被调用的公共能力」。</p></div>
+    </div>
+
+    <div class="commit-strip reveal">
+      <span class="mono-tag" data-i18n="impact.commitTag">我们的边界 // COMMITMENTS</span>
+      <div class="cs-items">
+        <span data-i18n="impact.c1">不打扰：拍摄不干扰游客与生态</span>
+        <span data-i18n="impact.c2">不越界：严格遵守空域与隐私边界</span>
+        <span data-i18n="impact.c3">不转嫁：把门槛降到零，而不是把成本转给用户</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESG -->
+  <section class="section section-alt" id="esg">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow"><span data-i18n="esg.eyebrow">可持续与治理 // ESG</span></div>
+      <h2 class="sec-title is-long" data-i18n="esg.title">把增长，建立在可持续与合规之上</h2>
+      <p class="sec-desc" data-i18n="esg.desc">共享机库天然比「人手一台无人机」更轻。我们把这个结构优势，延伸成一套可被检查的环境、社会与治理承诺。</p>
+    </div>
+
+    <div class="esg-grid">
+      <article class="esg-card reveal">
+        <div class="esg-letter">E</div>
+        <h3 data-i18n="esg.eTitle">环境 // Environment</h3>
+        <ul>
+          <li data-i18n="esg.e1">共享替代购买：一台机库服务多人，减少个人无人机闲置与电池废弃。</li>
+          <li data-i18n="esg.e2">低碳补能：机场顶盖集成太阳能板，探索光伏辅助供电与储能调度。</li>
+          <li data-i18n="esg.e3">无痕拍摄：固定航线、不落地、不踩踏，减少对植被与地貌的干扰。</li>
+          <li data-i18n="esg.e4">数字优先：电子相册与云端回看，减少实体冲印与物料消耗。</li>
+        </ul>
+      </article>
+      <article class="esg-card reveal">
+        <div class="esg-letter">S</div>
+        <h3 data-i18n="esg.sTitle">社会 // Social</h3>
+        <ul>
+          <li data-i18n="esg.s1">影像平权：让老人、儿童、残障人士也能获得专业级旅行影像。</li>
+          <li data-i18n="esg.s2">适老化与无障碍：大字号、低学习成本的交互与语音引导。</li>
+          <li data-i18n="esg.s3">青少年科普：把机库与航拍算法变成可参观、可讲解的科技课堂。</li>
+          <li data-i18n="esg.s4">在地就业：景区运维、机库巡检与内容运营优先本地招募。</li>
+        </ul>
+      </article>
+      <article class="esg-card reveal">
+        <div class="esg-letter">G</div>
+        <h3 data-i18n="esg.gTitle">治理 // Governance</h3>
+        <ul>
+          <li data-i18n="esg.g1">空域合规：固定点位、实名飞行、统一报备，杜绝黑飞。</li>
+          <li data-i18n="esg.g2">数据最小化：仅保留作品必需的坐标与参数，支持一键删除。</li>
+          <li data-i18n="esg.g3">隐私保护：人像与敏感区域自动模糊，拍摄范围公开可查。</li>
+          <li data-i18n="esg.g4">供应链合规：采用大疆行业级硬件与官方云平台，全链路可追溯。</li>
+        </ul>
+      </article>
+    </div>
+
+    <figure class="wide-figure esg-figure reveal">
+      <img src="vendor/photos/esg_green.jpg" alt="Drone dock with solar panels on a green meadow" loading="lazy" />
+      <figcaption>
+        <span class="ov ov-a"><b data-i18n="esg.figT">共享 · 低碳 · 无痕</b><span data-i18n="esg.figS">太阳能顶盖 · 固定航线 · 景区零打扰</span></span>
+      </figcaption>
+    </figure>
+
+    <div class="esg-targets reveal">
+      <div class="et-cell"><span class="mono-tag" data-i18n="esg.t1k">合规目标</span><b data-i18n="esg.t1v">100% 空域报备</b></div>
+      <div class="et-cell"><span class="mono-tag" data-i18n="esg.t2k">安全目标</span><b data-i18n="esg.t2v">0 起违规飞行</b></div>
+      <div class="et-cell"><span class="mono-tag" data-i18n="esg.t3k">数据目标</span><b data-i18n="esg.t3v">可查询 · 可删除</b></div>
+      <div class="et-cell"><span class="mono-tag" data-i18n="esg.t4k">披露目标</span><b data-i18n="esg.t4v">年度影响力简报</b></div>
+    </div>
+    <p class="table-note mono-tag" data-i18n="esg.note">以上为运营目标与承诺，非已完成的第三方认证。</p>
+  </section>
+
+  <!-- ROLLOUT -->
+  <section class="section" id="rollout">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow"><span data-i18n="roll.eyebrow">落地路径 // ROLLOUT</span></div>
+      <h2 class="sec-title" data-i18n="roll.title">从一次试点，到一张网络</h2>
+    </div>
+    <div class="chrono">
+      <div class="ch-row reveal">
+        <div class="ch-year mono-tag">STEP 01</div>
+        <div class="ch-big">01</div>
+        <div class="ch-body">
+          <h3 class="ch-h" data-i18n="roll.h1">景区试点</h3>
+          <p class="ch-p" data-i18n="roll.p1">在核心景区部署首台智能机库，跑通预约、拍摄、返航的完整闭环。</p>
+        </div>
+      </div>
+      <div class="ch-row reveal">
+        <div class="ch-year mono-tag">STEP 02</div>
+        <div class="ch-big">02</div>
+        <div class="ch-body">
+          <h3 class="ch-h" data-i18n="roll.h2">多点位复制</h3>
+          <p class="ch-p" data-i18n="roll.p2">以标准化机库与统一空域管控，把一个景区的经验复制到更多点位。</p>
+        </div>
+      </div>
+      <div class="ch-row reveal">
+        <div class="ch-year mono-tag">STEP 03</div>
+        <div class="ch-big">03</div>
+        <div class="ch-body">
+          <h3 class="ch-h" data-i18n="roll.h3">城市与文旅网络</h3>
+          <p class="ch-p" data-i18n="roll.p3">连接城市与文旅目的地，让天际视角成为可被调用的基础设施。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUMBERS -->
+  <section class="section section-alt" id="numbers">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow"><span data-i18n="tel.eyebrow">数据 // BY THE NUMBERS</span></div>
+    </div>
+    <div class="tel-grid reveal">
+      <div class="tel"><b class="tel-v" data-count="4">0</b><span class="tel-k" data-i18n="tel.k1">道旅拍门槛</span></div>
+      <div class="tel"><b class="tel-v" data-count="3">0</b><span class="tel-k" data-i18n="tel.k2">类视觉算法</span></div>
+      <div class="tel"><b class="tel-v" data-count="5">0</b><span class="tel-k" data-i18n="tel.k3">项核心技术</span></div>
+      <div class="tel"><b class="tel-v">24/7</b><span class="tel-k" data-i18n="tel.k4">全天候待命</span></div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="cta" id="closing">
+    <div class="cta-inner reveal">
+      <div class="sec-eyebrow"><span data-i18n="close.eyebrow">愿景 // THE VISION</span></div>
+      <h2 class="cta-title" data-i18n-html="close.title">把天空，<br />做成一项基础设施。</h2>
+      <p class="cta-sub" data-i18n="close.sub">每一片风景，都拥有专属的天际视角；每一个人，都能零门槛拍出惊艳的航拍大片。从景区试点，到多点位复制，再到城市与文旅网络——我们希望把天空，交给每一个人。</p>
+      <p class="cta-en mono-tag">FOR EVERY LANDSCAPE, A DEDICATED SKY VIEW.</p>
+      <div class="hero-actions">
+        <a class="btn-solid btn-xl" href="#solution"><span data-i18n="close.btn1">回顾产品</span><span class="cta-arrow">→</span></a>
+        <a class="btn-ghost btn-xl" href="#atlas"><span data-i18n="close.btn2">浏览相册</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="f-brand">YOUR SKY</div>
+    <div class="f-meta mono-tag">
+      <span data-i18n="footer.tag">AI 一体化智能机库航拍平台</span>
+      <span>POWERED BY DJI DOCK SERIES</span>
+      <span>© 2026 YOUR SKY FOR YOU</span>
+      <span data-i18n="footer.ver">V. 2.1 — SKY AS INFRASTRUCTURE</span>
+      <span style="color:#fbbf24;">FRONTEND DEMO · 前端演示版</span>
+      <a class="f-link" href="https://github.com/laoyangnb666/your-sky-for-you" target="_blank" rel="noopener noreferrer">GITHUB ↗</a>
+    </div>
+  </footer>
+
+  <script src="js/landing.js?v=20261105c" defer></script>
+</body>
+</html>

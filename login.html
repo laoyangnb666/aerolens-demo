@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- ⚠️ FRONTEND DEMO · 前端演示版：登录为演示流程，账号仅存于浏览器 localStorage，见 README.md -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AeroLens · 登录 — AI 无人机云端相册（演示版）</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+  <script src="vendor/tailwind.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Orbitron', 'Inter', 'sans-serif'],
+            body: ['Noto Sans SC', 'Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="css/login.css?v=20261101" />
+  <link rel="stylesheet" href="css/page-transition.css?v=20261010" />
+  <!-- 过渡脚本必须在 head 同步执行：新页面首次绘制前铺上覆盖层，杜绝闪现 -->
+  <script src="js/page-transition.js?v=20261010"></script>
+</head>
+<body class="min-h-screen bg-black text-white antialiased">
+
+  <!-- 语言切换（与产品页共享 aerolens-lang 语言偏好） -->
+  <div class="lang-switch" role="group" aria-label="Language">
+    <button class="lang-btn active" data-lang="zh" type="button">中</button>
+    <button class="lang-btn" data-lang="en" type="button">EN</button>
+  </div>
+
+  <!-- 背景：无人机航拍俯瞰 + 青色氛围光（光晕环绕卡片四周，避开正中央避免过曝） -->
+  <div class="fixed inset-0 -z-10">
+    <img
+      src="vendor/photos/page_bg.jpg?v=1"
+      alt="" class="h-full w-full object-cover object-center" />
+    <!-- 整体压暗，让卡片区成为画面最亮处 -->
+    <div class="absolute inset-0 bg-black/35"></div>
+    <!-- 氛围光层：环绕卡片左下与右上，避免穿过卡片正中 -->
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_45%_40%_at_22%_78%,rgba(56,189,248,0.20),transparent_70%)]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_40%_35%_at_82%_22%,rgba(167,139,250,0.16),transparent_70%)]"></div>
+    <!-- 底部渐变压暗，保证表单可读 -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/25"></div>
+  </div>
+
+  <!-- 主区域 -->
+  <main class="relative flex min-h-screen items-center justify-center p-4 sm:p-6">
+
+    <div class="relative z-10 w-full max-w-3xl">
+
+      <!-- 卡片：黑色落影 + 青色 bloom 写进同一个 arbitrary shadow，避免互相覆盖 -->
+      <div class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.10] backdrop-blur-xl ring-1 ring-white/10 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.55),0_0_40px_rgba(56,189,248,0.30)] transition-all duration-300 hover:border-sky-400/20 hover:ring-sky-400/20 hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.6),0_0_64px_rgba(56,189,248,0.45)]">
+        <!-- 顶部发丝光 -->
+        <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+
+        <div class="relative flex flex-col sm:flex-row">
+
+          <!-- 左侧：图像 -->
+          <div class="login-visual relative h-48 w-full sm:h-auto sm:w-1/2" data-animate style="transition-delay:60ms">
+            <img
+              src="vendor/photos/page_visual.jpg?v=1"
+              alt="航拍视角" class="absolute inset-0 h-full w-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-tr from-black/50 via-black/30 to-transparent"></div>
+
+            <!-- 图内浮标 -->
+            <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-lg border border-white/10 bg-black/30 px-3 py-2 backdrop-blur-md">
+              <div class="flex items-center gap-2 text-xs text-white/75">
+                <iconify-icon icon="lucide:aperture" width="15"></iconify-icon>
+                <span data-i18n="login.visualTag">航拍视界</span>
+              </div>
+              <span class="text-[11px] text-white/60" data-i18n="login.visualLayout">1:1 布局</span>
+            </div>
+
+            <!-- 左上角坐标点缀 -->
+            <div class="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-white/10 bg-black/30 px-3 py-1 text-[10px] tracking-widest text-cyan-200/80 backdrop-blur-md">
+              <span class="pulse-dot"></span>
+              LIVE · 34.05°N 118.24°W
+            </div>
+          </div>
+
+          <!-- 右侧：表单 -->
+          <div class="w-full p-6 sm:w-1/2 sm:p-8">
+
+            <!-- 品牌 -->
+            <div class="mb-6 flex items-center justify-between">
+              <div class="flex items-center gap-3" data-animate>
+                <div class="grid h-10 w-10 place-items-center rounded-xl border border-white/15 bg-white/[0.06] shadow-black/30 shadow-sm">
+                  <iconify-icon icon="lucide:globe-2" width="20" class="text-cyan-300"></iconify-icon>
+                </div>
+                <div>
+                  <div class="text-[11px] tracking-[0.25em] text-white/60">AERO</div>
+                  <div class="text-[22px] font-semibold tracking-tight">AeroLens</div>
+                </div>
+              </div>
+              <div class="text-xs text-white/50" data-animate style="transition-delay:60ms">v1.0</div>
+            </div>
+
+            <!-- 标题 -->
+            <div class="mb-6" data-animate style="transition-delay:80ms">
+              <h1 class="text-[26px] font-semibold tracking-tight" data-i18n="login.welcome">欢迎回来</h1>
+              <p class="mt-1.5 text-sm text-white/60" data-i18n="login.subtitle">登录以继续访问你的云端航拍相册。</p>
+            </div>
+
+            <!-- 表单 -->
+            <form id="loginForm" class="space-y-4" novalidate>
+
+              <!-- 账号 -->
+              <div class="space-y-2" data-animate style="transition-delay:120ms">
+                <label for="email" class="block text-sm text-white/80" data-i18n="login.account">邮箱或用户名</label>
+                <div class="group/input relative flex items-center rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 transition-all hover:border-white/20 focus-within:border-sky-400/25 focus-within:bg-white/[0.07]">
+                  <iconify-icon icon="lucide:mail" width="17" class="mr-2 text-white/60"></iconify-icon>
+                  <input id="email" type="text" inputmode="email" autocomplete="username"
+                    placeholder="you@domain.com"
+                    class="w-full bg-transparent text-sm text-white placeholder:text-white/40 focus:outline-none" />
+                  <div class="pointer-events-none absolute inset-0 rounded-xl ring-0 ring-sky-400/0 transition-all group-focus-within/input:ring-2 group-focus-within/input:ring-sky-400/25"></div>
+                </div>
+              </div>
+
+              <!-- 密码 -->
+              <div class="space-y-2" data-animate style="transition-delay:160ms">
+                <div class="flex items-center justify-between">
+                  <label for="password" class="block text-sm text-white/80" data-i18n="login.password">密码</label>
+                  <a href="#" class="text-xs text-sky-300/80 transition-colors hover:text-sky-300 hover:underline underline-offset-4" data-i18n="login.forgot">忘记密码？</a>
+                </div>
+                <div class="group/input relative flex items-center rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 transition-all hover:border-white/20 focus-within:border-sky-400/25 focus-within:bg-white/[0.07]">
+                  <iconify-icon icon="lucide:lock" width="17" class="mr-2 text-white/60"></iconify-icon>
+                  <input id="password" type="password" autocomplete="current-password"
+                    placeholder="••••••••"
+                    class="w-full bg-transparent text-sm text-white placeholder:text-white/40 focus:outline-none" />
+                  <button type="button" id="togglePassword"
+                    class="ml-2 grid h-8 w-8 place-items-center rounded-lg text-white/70 transition-colors hover:bg-white/10 hover:text-white/90"
+                    aria-label="显示或隐藏密码">
+                    <iconify-icon id="eyeIcon" icon="lucide:eye" width="16"></iconify-icon>
+                  </button>
+                  <div class="pointer-events-none absolute inset-0 rounded-xl ring-0 ring-sky-400/0 transition-all group-focus-within/input:ring-2 group-focus-within/input:ring-sky-400/25"></div>
+                </div>
+              </div>
+
+              <!-- 选项 -->
+              <div class="flex items-center justify-between pt-1" data-animate style="transition-delay:200ms">
+                <label class="inline-flex cursor-pointer select-none items-center gap-2">
+                  <input id="remember" type="checkbox" class="peer sr-only" />
+                  <span class="check-box grid h-5 w-5 place-items-center rounded-md border border-white/15 bg-white/5 transition-all peer-checked:border-sky-400 peer-checked:bg-sky-400 peer-checked:shadow-[0_0_0_3px_rgba(56,189,248,0.25)]">
+                    <iconify-icon class="check-mark" icon="lucide:check" width="13"></iconify-icon>
+                  </span>
+                  <span class="text-sm text-white/80" data-i18n="login.remember">记住我</span>
+                </label>
+                <a href="#" class="text-sm text-white/60 transition-colors hover:text-white/80 hover:underline underline-offset-4" data-i18n="login.help">需要帮助？</a>
+              </div>
+
+              <!-- 分隔线 -->
+              <div class="relative" data-animate style="transition-delay:220ms">
+                <div class="my-2 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+              </div>
+
+              <!-- 提交 -->
+              <div class="grid gap-3" data-animate style="transition-delay:240ms">
+                <button id="submitBtn" type="submit" disabled
+                  class="login-submit group relative inline-flex items-center justify-center rounded-xl px-4 py-2.5 text-sm font-medium text-white outline-none ring-1 ring-sky-400/40 shadow-[0_8px_24px_-4px_rgba(2,132,199,0.5),0_0_20px_rgba(56,189,248,0.35)] transition-all hover:brightness-110 hover:saturate-125 hover:shadow-[0_10px_28px_-4px_rgba(2,132,199,0.6),0_0_36px_rgba(56,189,248,0.55)] focus-visible:ring-2 focus-visible:ring-sky-300 disabled:cursor-not-allowed disabled:opacity-60"
+                  style="background: radial-gradient(120% 120% at 0% 0%, rgba(186,230,253,1) 0%, rgba(56,189,248,1) 36%, rgba(125,211,252,0.3) 60%), radial-gradient(120% 120% at 100% 0%, rgba(103,232,249,1) 0%, rgba(56,189,248,0.95) 45%, rgba(34,211,238,0.3) 70%), radial-gradient(140% 140% at 100% 100%, rgba(56,189,248,1) 10%, rgba(14,165,233,1) 45%, rgba(8,47,73,1) 85%);">
+                  <span class="absolute inset-0 -z-10 rounded-xl bg-sky-400/30 opacity-60 blur-xl transition-opacity group-hover:opacity-100"></span>
+                  <iconify-icon icon="lucide:log-in" width="16" class="mr-2"></iconify-icon>
+                  <span id="submitText">登录</span>
+                </button>
+                <p class="text-center text-xs text-white/55">
+                  <span data-i18n="login.noAccount">还没有账号？</span>
+                  <a href="register.html" class="text-sky-300/90 underline underline-offset-4 hover:text-sky-300" data-i18n="login.createAccount">创建账号</a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- 底部信息条 -->
+        <div class="flex items-center justify-between rounded-b-2xl border-t border-white/10 bg-white/[0.04] px-6 py-3 text-[11px] text-white/55">
+          <div class="flex items-center gap-2" data-animate style="transition-delay:260ms">
+            <iconify-icon icon="lucide:shield-check" width="13"></iconify-icon>
+            <span data-i18n="login.encryption">端到端加密</span>
+          </div>
+          <div class="flex items-center gap-2" data-animate style="transition-delay:280ms">
+            <iconify-icon icon="lucide:clock" width="13"></iconify-icon>
+            <span data-i18n="login.sync">毫秒级同步</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 卡片下说明 -->
+      <p class="mt-5 text-center text-[11px] leading-relaxed text-white/40" data-animate style="transition-delay:300ms">
+        <span data-i18n="login.tagline1">AI 无人机 · 三维地球云端相册</span> &nbsp;·&nbsp; <span data-i18n="login.tagline2">每张照片都标注在它被拍摄的坐标上</span>
+      </p>
+    </div>
+  </main>
+
+  <!-- Iconify -->
+  <script src="vendor/iconify-icon.min.js"></script>
+  <script src="js/login.js?v=20261031"></script>
+</body>
+</html>
