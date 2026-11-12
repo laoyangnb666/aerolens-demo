@@ -190,8 +190,14 @@
                    (location.hostname === 'localhost' || location.hostname === '127.0.0.1') &&
                    location.port === '8765';
 
-    if (onServer) {
-      // 已在服务器上下文，直接跳转
+    // 判断是否部署在静态演示站点（如 GitHub Pages）：
+    // 页面本身已是 https 部署环境，无需本地服务器，直接进入相册
+    // （AI 诗歌会自动回退到内置本地成诗模式）
+    var isDeployed = location.protocol === 'https:' &&
+                     location.hostname !== 'localhost' && location.hostname !== '127.0.0.1';
+
+    if (onServer || isDeployed) {
+      // 直接跳转
       setTimeout(function () {
         if (window.aerolensNavigate) window.aerolensNavigate(target);
         else window.location.href = target;

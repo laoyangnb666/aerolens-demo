@@ -1,5 +1,7 @@
 # AeroLens · 地球相册（前端演示版）
 
+> **▶ 在线体验：https://laoyangnb666.github.io/aerolens-demo/login.html**
+>
 > **⚠️ 这是一个前端演示程序（Frontend Demo）**
 > 本仓库仅用于展示界面与交互效果，所有数据均为演示数据，不含真实后端服务与真实账号体系。
 > 本地完整版（含无人机同步、EXIF 解析、真实模型配置等）未开源。
@@ -50,6 +52,11 @@ AeroLens 是一个「AI 无人机三维地球相册」概念产品：登录后�
    密钥只存在于服务端环境变量中，**请勿提交到任何仓库**。
 
 ## 🚀 本地运行
+
+**最简单的方式：直接打开在线演示** —— [https://laoyangnb666.github.io/aerolens-demo/login.html](https://laoyangnb666.github.io/aerolens-demo/login.html)
+（静态托管模式，AI 诗歌自动使用本地成诗模式）
+
+本地运行：
 
 ```bash
 # 1. 进入仓库目录
