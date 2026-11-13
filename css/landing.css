@@ -77,6 +77,11 @@ a:hover .cta-arrow, button:hover .cta-arrow { transform: translateX(4px); }
 }
 .nav-brand {
   font-family: var(--font-display); font-size: 1.25rem; letter-spacing: .04em;
+  display: inline-flex; align-items: center; gap: .6rem;
+}
+.nav-logo {
+  width: 30px; height: 30px; border-radius: 8px; object-fit: cover;
+  box-shadow: 0 0 0 1px var(--line), 0 2px 8px rgba(0,0,0,.35);
 }
 .nav-brand sup { color: var(--accent); font-size: .6em; }
 .nav-links { display: flex; gap: clamp(1rem, 3vw, 2.5rem); }
